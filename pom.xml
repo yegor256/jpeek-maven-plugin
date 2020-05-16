@@ -33,6 +33,7 @@ SOFTWARE.
     <url>https://github.com/yegor256/jpeek-maven-plugin</url>
     <inceptionYear>2020</inceptionYear>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
@@ -72,7 +73,32 @@ SOFTWARE.
             <version>3.6.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jpeek</groupId>
+            <artifactId>jpeek</artifactId>
+            <version>0.30.24</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <id>mojo-descriptor</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
     <profiles>
     <profile>
         <id>qulice</id>
