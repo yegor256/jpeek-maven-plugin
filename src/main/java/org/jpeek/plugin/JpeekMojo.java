@@ -45,7 +45,7 @@ import org.jpeek.App;
  *  This should output an analysis most certainly in a different directory
  *  from the main classes.
  */
-@Mojo(name = "analyze", defaultPhase = LifecyclePhase.SITE)
+@Mojo(name = "analyze", defaultPhase = LifecyclePhase.VERIFY)
 public final class JpeekMojo extends AbstractMojo {
 
     /**

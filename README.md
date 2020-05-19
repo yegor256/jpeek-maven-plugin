@@ -10,7 +10,7 @@ Add the plugin execution to your `pom.xml`:
         <executions>
             <execution>
                 <goals>
-                    <!-- Bound by default to site phase -->
+                    <!-- Bound by default to verify phase -->
                     <goal>analyze</goal>
                 </goals>
             </execution>
