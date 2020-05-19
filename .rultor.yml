@@ -12,7 +12,7 @@ architect:
 merge:
   script: |
     mvn clean install -Pqulice --errors --settings ../settings.xml
-    mvn clean site -Psite --errors --settings ../settings.xml
+    mvn clean --errors --settings ../settings.xml
 deploy:
   script: |
     mvn clean deploy -Pqulice --errors --settings ../settings.xml
