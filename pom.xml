@@ -103,7 +103,6 @@ SOFTWARE.
             </plugin>
         </plugins>
     </build>
-
     <profiles>
         <profile>
             <id>qulice</id>
