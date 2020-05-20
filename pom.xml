@@ -84,7 +84,6 @@ SOFTWARE.
             <version>0.30.24</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
