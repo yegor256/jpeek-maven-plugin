@@ -64,6 +64,9 @@ public final class JpeekMojo extends AbstractMojo {
     @Parameter(property = "jpeek.output", defaultValue = "${project.build.directory}/jpeek/")
     private File outputDirectory;
 
+    /**
+     * Specifies expected cohesion ration of a project
+     */
     @Parameter(property = "jpeek.cohesionRate", defaultValue = "8.0")
     private double cohesionRate;
 
