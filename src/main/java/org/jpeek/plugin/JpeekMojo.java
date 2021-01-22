@@ -25,6 +25,8 @@ package org.jpeek.plugin;
 
 import java.io.File;
 import java.io.IOException;
+
+import com.jcabi.xml.*;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -62,6 +64,9 @@ public final class JpeekMojo extends AbstractMojo {
     @Parameter(property = "jpeek.output", defaultValue = "${project.build.directory}/jpeek/")
     private File outputDirectory;
 
+    @Parameter(property = "jpeek.cohesionRate", defaultValue = "8.0")
+    private double cohesionRate;
+
     /**
      * Skip analyze.
      */
@@ -76,6 +81,18 @@ public final class JpeekMojo extends AbstractMojo {
                     this.inputDirectory.toPath(),
                     this.outputDirectory.toPath()
                 ).analyze();
+
+                final XML index = new XMLDocument(
+                    new File(String.format("%s\\%s", outputDirectory, "index.xml"))
+                );
+
+                final double score = Double.parseDouble(
+                    index.xpath("/index/@score").get(0)
+                );
+
+                if(score < cohesionRate)
+                    throw new MojoFailureException(String.format("Project cohesion rate is less than %.2f", cohesionRate));
+
             } catch (final IOException ex) {
                 throw new MojoExecutionException("Couldn't analyze", ex);
             }

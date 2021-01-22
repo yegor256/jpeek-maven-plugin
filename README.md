@@ -19,6 +19,7 @@ Add the plugin execution to your `pom.xml`:
             <!-- Those are the default values -->
             <inputDirectory>${project.build.outputDirectory}</inputDirectory>
             <outputDirectory>${project.build.directory}/jpeek/</outputDirectory>
+            <cohesionRate>8.0</cohesionRate>
         </configuration>
     </plugin>
 ```
