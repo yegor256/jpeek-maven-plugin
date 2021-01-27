@@ -23,10 +23,10 @@
  */
 package org.jpeek.plugin;
 
+import com.jcabi.xml.XML;
+import com.jcabi.xml.XMLDocument;
 import java.io.File;
 import java.io.IOException;
-
-import com.jcabi.xml.*;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -38,20 +38,21 @@ import org.jpeek.App;
 /**
  * {@link org.apache.maven.plugin.AbstractMojo} implementation for jPeek.
  *
- * @since 0.1
  * @todo #3:30min Add some tests for this Mojo using AbstractMojoTestCase
- *  from maven-plugin-testing-harness. A good resource for examples is
- *  maven-checkstyle-plugin. It has been verified that it works from the
- *  command line (see README).
+ * from maven-plugin-testing-harness. A good resource for examples is
+ * maven-checkstyle-plugin. It has been verified that it works from the
+ * command line (see README).
  * @todo #3:30min Add support for analyzing classes in the test directory.
- *  This should output an analysis most certainly in a different directory
- *  from the main classes.
+ * This should output an analysis most certainly in a different directory
+ * from the main classes.
+ * @since 0.1
  */
 @Mojo(name = "analyze", defaultPhase = LifecyclePhase.VERIFY)
 public final class JpeekMojo extends AbstractMojo {
 
     /**
      * Specifies the path where to find classes analyzed by jPeek.
+     *
      * @checkstyle MemberNameCheck (3 lines)
      */
     @Parameter(property = "jpeek.input", defaultValue = "${project.build.outputDirectory}")
@@ -59,15 +60,18 @@ public final class JpeekMojo extends AbstractMojo {
 
     /**
      * Specifies the path to save the jPeek output.
+     *
      * @checkstyle MemberNameCheck (3 lines)
      */
     @Parameter(property = "jpeek.output", defaultValue = "${project.build.directory}/jpeek/")
     private File outputDirectory;
 
     /**
-     * Specifies expected cohesion ration of a project
+     * Specifies expected cohesion ration of a project.
+     *
+     * @checkstyle MemberNameCheck (3 lines)
      */
-    @Parameter(property = "jpeek.cohesionRate", defaultValue = "8.0")
+    @Parameter(property = "jpeek.cohesionrate", defaultValue = "8.0")
     private double cohesionRate;
 
     /**
@@ -84,18 +88,17 @@ public final class JpeekMojo extends AbstractMojo {
                     this.inputDirectory.toPath(),
                     this.outputDirectory.toPath()
                 ).analyze();
-
                 final XML index = new XMLDocument(
-                    new File(String.format("%s\\%s", outputDirectory, "index.xml"))
+                    new File(String.format("%s\\%s", this.outputDirectory, "index.xml"))
                 );
-
                 final double score = Double.parseDouble(
                     index.xpath("/index/@score").get(0)
                 );
-
-                if(score < cohesionRate)
-                    throw new MojoFailureException(String.format("Project cohesion rate is less than %.2f", cohesionRate));
-
+                if (score < this.cohesionRate) {
+                    throw new MojoFailureException(
+                        String.format("Project cohesion rate is less than %.2f", this.cohesionRate)
+                    );
+                }
             } catch (final IOException ex) {
                 throw new MojoExecutionException("Couldn't analyze", ex);
             }

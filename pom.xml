@@ -79,6 +79,11 @@ SOFTWARE.
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>com.jcabi</groupId>
+      <artifactId>jcabi-xml</artifactId>
+      <version>0.21.1</version>
+    </dependency>
+    <dependency>
       <groupId>org.jpeek</groupId>
       <artifactId>jpeek</artifactId>
       <version>0.30.24</version>
