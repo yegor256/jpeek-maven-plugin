@@ -38,14 +38,14 @@ import org.jpeek.App;
 /**
  * {@link org.apache.maven.plugin.AbstractMojo} implementation for jPeek.
  *
- * @todo #3:30min Add some tests for this Mojo using AbstractMojoTestCase
- * from maven-plugin-testing-harness. A good resource for examples is
- * maven-checkstyle-plugin. It has been verified that it works from the
- * command line (see README).
- * @todo #3:30min Add support for analyzing classes in the test directory.
- * This should output an analysis most certainly in a different directory
- * from the main classes.
  * @since 0.1
+ * @todo #3:30min Add some tests for this Mojo using AbstractMojoTestCase
+ *  from maven-plugin-testing-harness. A good resource for examples is
+ *  maven-checkstyle-plugin. It has been verified that it works from the
+ *  command line (see README).
+ * @todo #3:30min Add support for analyzing classes in the test directory.
+ *  This should output an analysis most certainly in a different directory
+ *  from the main classes.
  */
 @Mojo(name = "analyze", defaultPhase = LifecyclePhase.VERIFY)
 public final class JpeekMojo extends AbstractMojo {
