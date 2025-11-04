@@ -88,6 +88,11 @@ SOFTWARE.
       <artifactId>jpeek</artifactId>
       <version>0.30.24</version>
     </dependency>
+    <dependency>
+      <groupId>com.yegor256</groupId>
+      <artifactId>farea</artifactId>
+      <version>0.15.4</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
