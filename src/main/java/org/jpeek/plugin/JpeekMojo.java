@@ -23,7 +23,6 @@
  */
 package org.jpeek.plugin;
 
-import com.jcabi.xml.XML;
 import com.jcabi.xml.XMLDocument;
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +36,6 @@ import org.jpeek.App;
 
 /**
  * {@link org.apache.maven.plugin.AbstractMojo} implementation for jPeek.
- *
  * @since 0.1
  * @todo #3:30min Add some tests for this Mojo using AbstractMojoTestCase
  *  from maven-plugin-testing-harness. A good resource for examples is
@@ -52,7 +50,6 @@ public final class JpeekMojo extends AbstractMojo {
 
     /**
      * Specifies the path where to find classes analyzed by jPeek.
-     *
      * @checkstyle MemberNameCheck (3 lines)
      */
     @Parameter(property = "jpeek.input", defaultValue = "${project.build.outputDirectory}")
@@ -60,7 +57,6 @@ public final class JpeekMojo extends AbstractMojo {
 
     /**
      * Specifies the path to save the jPeek output.
-     *
      * @checkstyle MemberNameCheck (3 lines)
      */
     @Parameter(property = "jpeek.output", defaultValue = "${project.build.directory}/jpeek/")
@@ -68,7 +64,6 @@ public final class JpeekMojo extends AbstractMojo {
 
     /**
      * Specifies expected cohesion ration of a project.
-     *
      * @checkstyle MemberNameCheck (3 lines)
      */
     @Parameter(property = "jpeek.cohesionrate", defaultValue = "8.0")
@@ -88,11 +83,10 @@ public final class JpeekMojo extends AbstractMojo {
                     this.inputDirectory.toPath(),
                     this.outputDirectory.toPath()
                 ).analyze();
-                final XML index = new XMLDocument(
-                    new File(String.format("%s\\%s", this.outputDirectory, "index.xml"))
-                );
                 final double score = Double.parseDouble(
-                    index.xpath("/index/@score").get(0)
+                    new XMLDocument(
+                        new File(this.outputDirectory, "index.xml")
+                    ).xpath("/index/@score").get(0)
                 );
                 if (score < this.cohesionRate) {
                     throw new MojoFailureException(
