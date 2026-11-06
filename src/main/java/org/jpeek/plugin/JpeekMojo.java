@@ -39,10 +39,6 @@ import org.jpeek.App;
  * {@link org.apache.maven.plugin.AbstractMojo} implementation for jPeek.
  *
  * @since 0.1
- * @todo #3:30min Add some tests for this Mojo using AbstractMojoTestCase
- *  from maven-plugin-testing-harness. A good resource for examples is
- *  maven-checkstyle-plugin. It has been verified that it works from the
- *  command line (see README).
  * @todo #3:30min Add support for analyzing classes in the test directory.
  *  This should output an analysis most certainly in a different directory
  *  from the main classes.
@@ -89,7 +85,7 @@ public final class JpeekMojo extends AbstractMojo {
                     this.outputDirectory.toPath()
                 ).analyze();
                 final XML index = new XMLDocument(
-                    new File(String.format("%s\\%s", this.outputDirectory, "index.xml"))
+                    new File(this.outputDirectory, "index.xml")
                 );
                 final double score = Double.parseDouble(
                     index.xpath("/index/@score").get(0)

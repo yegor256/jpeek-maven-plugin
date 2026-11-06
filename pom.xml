@@ -66,6 +66,15 @@ SOFTWARE.
     <system>rultor</system>
     <url>https://www.rultor.com/s/jpeek-maven-plugin</url>
   </ciManagement>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.cactoos</groupId>
+        <artifactId>cactoos</artifactId>
+        <version>0.43</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>org.apache.maven</groupId>
@@ -84,9 +93,20 @@ SOFTWARE.
       <version>0.21.1</version>
     </dependency>
     <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.jpeek</groupId>
       <artifactId>jpeek</artifactId>
       <version>0.30.24</version>
+    </dependency>
+    <dependency>
+      <groupId>com.yegor256</groupId>
+      <artifactId>farea</artifactId>
+      <version>0.14.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
